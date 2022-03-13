@@ -1,0 +1,6 @@
+.LeftSiderBarCampaign{
+    height: 87vh;
+    flex: 0.2;
+    overflow-y: scroll;
+    padding: 1rem;
+}

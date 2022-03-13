@@ -1,0 +1,16 @@
+*{
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+body{
+  background-image: url('https://cdn.zapier.com/ssr/7078dfcb6789f81d6176a4bd8bd97684369081ab/_next/static/images/marketing/homepage/homepage-hero-pattern.svg') ;
+}
+
+.homePage_loader{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}

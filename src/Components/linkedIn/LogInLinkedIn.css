@@ -1,0 +1,17 @@
+.linkedin_login{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0.7;
+}
+
+.linkedin_login_btn{
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.linkedin_login_btn img{
+    height: 50px;
+    width: 16rem;
+}

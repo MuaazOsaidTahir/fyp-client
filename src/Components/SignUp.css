@@ -1,0 +1,93 @@
+.SignUp, .logIn{
+    width: 100%;
+    height: 87vh;
+    background-color: #F1F4F5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.signup_form, .login_inner{
+    width: 75vw;
+    height: 75vh;
+    background-color: white;
+    padding: 1.5rem;
+    border: 1px solid #E6E6E6;
+    display: flex;
+}
+
+.signup_form_left, .login_inner_left{
+    flex: 0.7;
+    border-right: 1px solid #E6E6E6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.signup_form_left h1, .login_inner_left h1{
+    margin-top: 15px;
+    font-family: "Open Sans", sans-serif;
+    font-size: 40px;
+    line-height: 45px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    text-align: left;
+}
+
+.signup_form_left ul, .login_inner_left ul{
+    margin-top: 1rem;
+    list-style: none;
+}
+
+.signup_form_left ul li, .login_inner_left ul li{
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.signup_form_left ul li span , .login_inner_left ul li span{
+    font-family: "Open Sans", sans-serif;
+    font-size: 16px;
+    line-height: 25px;
+    font-weight: 400;
+    color: rgb(51, 51, 51);
+    margin: 0px 0px 0px 10px;
+}
+
+.signup_form_left ul .MuiSvgIcon-root , .login_inner_left ul .MuiSvgIcon-root{
+    color: #62D493;
+    margin-right: 10px;
+}
+
+.signup_form_right, .login_inner_right{
+    flex: 0.6;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.signup_form_right input, .login_inner_right input{
+    border-radius: 3px;
+    border: 1px solid #dadfe2;
+    color: #5f6c72;
+    height: 45px;
+    font-size: 14px;
+    width: 100%;
+    outline: none;
+    margin-bottom: 1rem;
+    padding: 10px;
+}
+
+.signup_form_btn, .login_form_btn{
+    background-color: #F04600;
+    color: white;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 3px;
+    padding: 1em;
+}

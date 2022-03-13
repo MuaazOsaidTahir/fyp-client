@@ -1,0 +1,81 @@
+.HomePage{
+    color: #333333;
+}
+
+.homepage__topsection{
+    display: flex;
+    padding: 7rem 2rem;
+    height: 100%;
+}
+
+.homepage_right{
+    flex: 0.6;
+    padding: 0rem 2rem;
+}
+
+.homepage_left{
+    flex: 0.4;
+}
+
+.homepage_right h1{
+    margin-top: 15px;
+    font-family: "Open Sans", sans-serif;
+    font-size: 40px;
+    line-height: 45px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    text-align: left;
+}
+
+.homepage_left img{
+    width: 100%;
+}
+
+.homepage_right h2, .why__smm p, .membership__notification{
+    font-family: "Open Sans", sans-serif;
+    font-size: 24px;
+    line-height: 30px;
+    font-weight: 400;
+    letter-spacing: -1px;
+    text-align: left;
+    margin-top: 1rem;
+}
+
+.homepage__integrations{
+    background-color: white;
+    text-align: center;
+    padding: 3rem;
+}
+
+.socialmedia__images{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.socialmedia__images img{
+    width: 20vw;
+    object-fit: contain;
+}
+
+.homepage__integrations h4, .why__smm h4{
+    text-transform: uppercase;
+    font-family: "Open Sans", sans-serif;
+    color: #333333;
+    text-align: center;
+}
+
+.first_connection{
+    width: 200px;
+    height: 3px;
+    background-color: gray;
+}
+
+.why__smm{
+    padding: 3rem;
+    background-color: #F3F8FF;
+}
+
+.why__smm h4{
+    font-size: 30px;
+}

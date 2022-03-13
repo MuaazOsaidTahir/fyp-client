@@ -1,0 +1,11 @@
+.LinkedIn_profile{
+    flex: 0.8;
+}
+
+.LinkedIn_profile_header{
+    padding: 1rem;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

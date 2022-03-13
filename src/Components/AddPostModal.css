@@ -1,0 +1,76 @@
+.AddPostModal{
+    background-color: rgba(0,0,0,0.8);
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.AddPostModal_form{
+    height: 60vh;
+    width: 60vw;
+    background-color: white;
+    padding: 2rem;
+    border-radius: 20px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    overflow-y: scroll;
+}
+
+.AddPostModal_form::-webkit-scrollbar{
+    display: none;
+}
+
+.AddPostModal_form img{
+    margin-top: 2rem;
+    width: 100px;
+}
+
+.addpost_close_btn{
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    
+}
+
+.add_post_input{
+    margin-top: 1rem;
+    position: relative;
+}
+
+.add_post_input input{
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    cursor: pointer;
+}
+
+.add_post_input button{
+    text-align: center;
+    cursor: pointer;
+}
+
+.addPostModal_checkbox{
+    display: flex;
+    flex-direction: column;
+}
+
+.addPostModal_checkbox{
+    width: 100%;
+    margin: 25px;
+}

@@ -1,0 +1,6 @@
+.CampaignPage{
+    display: flex;
+    align-items: center;
+    height: 87vh;
+    background-color: white;
+}

@@ -1,0 +1,61 @@
+.memberShip{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 3rem;
+    height: 87vh;
+}
+
+.membership__notification{
+    color: #c9c9c9;
+    text-align: center;
+}
+
+.membership__planning{
+    display: flex;
+    margin-top: 4rem;
+}
+
+.membership__text{
+    flex: 0.6;
+    padding: 2rem;
+}
+
+.membership__card{
+    padding: 2rem;
+    flex: 1;
+}
+
+.membership__text h1{
+    font-family: "Open Sans", sans-serif;
+    font-size: 70px;
+    line-height: 75px;
+    font-weight: 800;
+    color: rgb(66, 66, 66);
+    letter-spacing: -1px;
+}
+
+.membership__text p{
+    font-family: "Open Sans", sans-serif;
+    font-size: 24px;
+    line-height: 30px;
+    font-weight: 700;
+    color: rgb(66, 66, 66);
+    letter-spacing: -1px;
+    margin-top: 1rem;
+}
+
+.membership__list{
+    list-style: none;
+}
+
+.membership__list li{
+    display: flex;
+    align-items: center;
+}
+
+.membership__typography{
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
