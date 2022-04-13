@@ -2,4 +2,19 @@
     height: 87vh;
     flex: 0.6;
     background-color: #f5f4f4;
+    position: relative;
+}
+
+.reset_button{
+    position: absolute !important;
+    bottom: 10px !important;
+    left: 10px !important;
+    z-index: 10 !important;
+}
+
+.confirm_button{
+    position: absolute !important;
+    bottom: 10px !important;
+    right: 10px !important;
+    z-index: 10 !important;
 }

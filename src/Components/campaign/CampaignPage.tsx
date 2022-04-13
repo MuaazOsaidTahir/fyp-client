@@ -22,7 +22,7 @@ const CampaignPage: FC = () => {
     return (
         <>
             <Header />
-            <div className='CampaignPage' >
+            <div className='CampaignPage card_style' >
                 <LeftSiderBarCampaign ClickedComponent={ClickedComponent} />
                 <CampaignComponent platform={platform} ClickedComponent={ClickedComponent} SelectedNode={SelectedNode} PostAddedNode={PostAddedNode} />
                 <RightSiderBarCampaign selectedNode={selectedNode} setPostAddedNode={setPostAddedNode}  />

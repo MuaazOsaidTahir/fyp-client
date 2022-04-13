@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import AvatarComponent from './AvatarComponent';
 import { useSelector } from 'react-redux';
 import { RootState } from '../reducer';
+import Badge from '@mui/material/Badge';
 
 interface Props {
     signup?: boolean,
@@ -25,24 +26,18 @@ const Header: FC<Props> = ({ signup, login }): JSX.Element => {
         <div className={`${scrolledvalue ? "header_scrolled header" : "header"}`} >
             <div className='navigation_header' >
                 <Link to="/" >
-                    <img src="https://res.cloudinary.com/djdcv17qb/image/upload/v1640114184/smm_wptpwe.png" alt="SMM" />
+                    <img className={scrolledvalue ? "header_scrolled_img" : 'header_img'} src="https://res.cloudinary.com/djdcv17qb/image/upload/v1640114184/smm_wptpwe.png" alt="SMM" />
                 </Link>
-                <Link to='/membership' >
+                {(userState?.subscription_status === 'canceled' || !userState) && <Link to='/membership' >
                     Get Membership
-                </Link>
-                {userState && <div className={`notification_style ${userState.subscription_status === 'canceled' ? 'cancel' : 'active'}`} >
-                    <span>.</span>
-                    {
-                        userState.subscription_status === 'canceled' ? 'Free' : 'Pro'
-                    }
-                    <span>.</span>
-
-                </div>}
+                </Link>}
             </div>
             <div>
                 {
                     userState ?
-                        <AvatarComponent /> :
+                        <Badge badgeContent={userState?.subscription_status === 'canceled' ? 'FREE' : 'PRO'} color={userState?.subscription_status === 'canceled' ? 'primary' : 'secondary'} >
+                            <AvatarComponent />
+                        </Badge> :
                         <>
                             {
                                 login && <Link to="/login" >
@@ -58,7 +53,7 @@ const Header: FC<Props> = ({ signup, login }): JSX.Element => {
                         </>
                 }
             </div>
-        </div>
+        </div >
     )
 }
 

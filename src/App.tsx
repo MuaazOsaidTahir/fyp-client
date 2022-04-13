@@ -6,17 +6,22 @@ import LogIn from './Components/LogIn';
 import MemberShipPage from './Components/MemberShipPage';
 import SignUp from './Components/SignUp';
 import { useQuery } from '@apollo/client';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Dispatch, useEffect, useState } from 'react';
 import { ActionType, userLoggedInStates } from './reducer/logInState';
 import { signedUpUser } from './apis/api';
 import Loader from 'react-loader-spinner';
 import CampaignPage from './Components/campaign/CampaignPage';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
+import UserCampaigns from './Components/UserCampaigns';
+import { RootState } from './reducer';
 
 function App() {
   const { data, error } = useQuery(signedUpUser)
   const [loading, setloading] = useState(true)
   const dispatch: Dispatch<ActionType> = useDispatch();
+  const userState = useSelector((store: RootState) => store.userLoggedIn)
 
   useEffect(() => {
     if (data) {
@@ -36,6 +41,20 @@ function App() {
     }
   }, [error])
 
+  const Notify = () => (
+    <ToastContainer
+      position="bottom-right"
+      autoClose={1500}
+      hideProgressBar
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+    />
+  )
+
   return (
     <div className="App">
       <BrowserRouter>
@@ -44,16 +63,28 @@ function App() {
             <div className='homePage_loader' >
               <Loader type="TailSpin" color="#FF4A00" height={80} width={80} />
             </div>
-            :
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/logIn" element={<LogIn />} />
-              <Route path="/signUp" element={<SignUp />} />
-              <Route path="/dashboard" element={<Dashboard toggle={false} />} />
-              <Route path="/dashboard/:platformName" element={<Dashboard toggle={true} />} />
-              <Route path="/membership" element={<MemberShipPage />} />
-              <Route path="/createcampaign" element={<CampaignPage />} />
-            </Routes>}
+            : userState ?
+              <Routes>
+                <Route path="/" element={<><Notify /><HomePage /></>} />
+                <Route path="/logIn" element={<><Notify /><LogIn /></>} />
+                <Route path="/signUp" element={<><Notify /><SignUp /></>} />
+                <Route path="/dashboard" element={<><Notify /><Dashboard toggle={false} /></>} />
+                <Route path="/dashboard/:platformName" element={<><Notify /><Dashboard toggle={true} /></>} />
+                <Route path="/membership" element={<><Notify /><MemberShipPage /></>} />
+                <Route path="/createcampaign" element={<><Notify /><CampaignPage /></>} />
+                <Route path="/usercampaigns" element={<><Notify /><UserCampaigns /></>} />
+              </Routes> :
+              <Routes>
+                <Route path="/" element={<><Notify /><HomePage /></>} />
+                <Route path="/logIn" element={<><Notify /><LogIn /></>} />
+                <Route path="/signUp" element={<><Notify /><SignUp /></>} />
+                {/* <Route path="/dashboard" element={<><Notify /><Dashboard toggle={false} /></>} /> */}
+                {/* <Route path="/dashboard/:platformName" element={<><Notify /><Dashboard toggle={true} /></>} /> */}
+                {/* <Route path="/membership" element={<><Notify /><MemberShipPage /></>} /> */}
+                {/* <Route path="/createcampaign" element={<><Notify /><CampaignPage /></>} />
+                <Route path="/usercampaigns" element={<><Notify /><UserCampaigns /></>} /> */}
+              </Routes>
+        }
       </BrowserRouter>
     </div>
   );

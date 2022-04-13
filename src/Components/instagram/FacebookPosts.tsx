@@ -1,44 +1,62 @@
-import React from 'react';
-import { EachPostField } from '../../interfaces/facebookInterfaces';
+import React, { FC, useEffect, useState } from 'react';
 import "./FacebookPosts.css"
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import { CardActions } from '@mui/material';
-import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
-import CommentIcon from '@material-ui/icons/Comment';
-import moment from "moment"
+import { IconButton } from '@mui/material';
+import { RootState } from '../../reducer';
+import { useSelector } from 'react-redux';
 
-function FacebookPosts({ id, picture, name, name_tags, likes, comments, created_time, alt_text }: EachPostField) {
+interface Props {
+    id: string,
+    name: string,
+    category: string
+}
+
+const FacebookPosts: FC<Props> = ({ id, name, category }) => {
+    const userState = useSelector((store: RootState) => store.facebookUser)
+    const [pageImage, setpageImage] = useState('')
+
+    const getPageImage = async () => {
+        try {
+            const Pageimage = await fetch(`https://graph.facebook.com/v13.0/${id}/picture?fields=url&type=normal&access_token=${userState.accessToken}`);
+            // console.log(Pageimage.url)
+
+            setpageImage(Pageimage.url);
+        } catch (error) {
+            console.log(error.message)
+        }
+    }
+
+    useEffect(() => {
+        if (id) {
+            getPageImage()
+        }
+    }, [id])
 
     // console.log(created_time);
 
     return (
-        <Card style={{ width: '19rem', margin: "10px" }} sx={{ maxWidth: 345 }}>
-            <CardHeader style={{ height: "5.5rem" }}
-                title={name?.split("\n").shift()}
-                subheader={moment(created_time).fromNow()}
-            />
-            <CardMedia
-                component="img"
-                height="200"
-                image={picture}
-                alt={alt_text}
-            />
-            <CardContent>
-                {
-                    name_tags?.map(tag => {
-                        return <Typography variant="body2" key={tag.id} color="text.secondary">{tag.name}</Typography>
-                    })
-                }
-            </CardContent>
-            <CardActions>
-                <Typography style={{ display: "flex", alignItems: "center" }} > <ThumbUpAltIcon /> {likes.data?.length || 0}</Typography>
-                <Typography style={{ display: "flex", alignItems: "center" }} > <CommentIcon /> {comments.data?.length || 0}</Typography>
-            </CardActions>
-        </Card>
+        <IconButton>
+            <Card sx={{ maxWidth: 345 }}>
+                <CardHeader
+                    title={name}
+                />
+                <CardMedia
+                    component="img"
+                    height="194"
+                    image={pageImage}
+                    alt={name}
+                />
+                <CardContent>
+                    <Typography variant="body2" color="text.secondary">
+                        {category}
+                    </Typography>
+                </CardContent>
+            </Card>
+        </IconButton>
     );
 }
 

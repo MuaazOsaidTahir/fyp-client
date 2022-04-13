@@ -1,9 +1,9 @@
 .memberShip{
     display: flex;
     flex-direction: column;
-    background-color: white;
+    /* background-color: white; */
     padding: 3rem;
-    height: 87vh;
+    height: 87.6vh;
 }
 
 .membership__notification{
@@ -24,6 +24,9 @@
 .membership__card{
     padding: 2rem;
     flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .membership__text h1{
@@ -31,7 +34,7 @@
     font-size: 70px;
     line-height: 75px;
     font-weight: 800;
-    color: rgb(66, 66, 66);
+    color: peachpuff;
     letter-spacing: -1px;
 }
 
@@ -40,7 +43,7 @@
     font-size: 24px;
     line-height: 30px;
     font-weight: 700;
-    color: rgb(66, 66, 66);
+    color: #635BFF;
     letter-spacing: -1px;
     margin-top: 1rem;
 }

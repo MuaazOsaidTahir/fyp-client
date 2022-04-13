@@ -13,6 +13,9 @@ const AvatarComponent: FC = () => {
                 <Link to={"/dashboard"} >
                     <Button color="primary" variant="contained" > Dashboard</Button>
                 </Link>
+                <Link to="/usercampaigns" >
+                    <Button color="secondary" variant="outlined" > Campaigns</Button>
+                </Link>
                 <div className='divider' />
                 <Button variant="contained" color="error" > LogOut </Button>
             </div>

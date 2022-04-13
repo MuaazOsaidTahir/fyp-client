@@ -1,6 +1,7 @@
 .CampaignPage{
     display: flex;
     align-items: center;
-    height: 87vh;
-    background-color: white;
+    height: 87.6vh;
+    /* background-color: white; */
+    margin: 10px;
 }

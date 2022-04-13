@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 import { ActionType, userLoggedInStates } from '../reducer/logInState';
 import Loader from "react-loader-spinner";
 import { useNavigate } from 'react-router-dom';
+import { notificationToastify } from '../tostify/toastify';
 
 interface logInState {
     email: string,
@@ -28,9 +29,10 @@ const LogIn: FC = () => {
             if (data.loginUser) {
                 dispatch({ type: userLoggedInStates.user, payload: data.loginUser })
                 navigate("/")
+                notificationToastify(`Logged in as: ${data.loginUser.email}`, 'success')
             }
             else if (data.loginUser === null) {
-                alert("User not Registered!")
+                notificationToastify(`User not Registered`, 'error')
             }
         }
     }, [data])
@@ -68,7 +70,7 @@ const LogIn: FC = () => {
         <>
             <Header signup={true} login={false} />
             <div className='logIn' >
-                <div className='login_inner' >
+                <div className='login_inner card_style' >
                     <div className='login_inner_left' >
                         <div>
                             <h1>Continue managing your accounts.</h1>

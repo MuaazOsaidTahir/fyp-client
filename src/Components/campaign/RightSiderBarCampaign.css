@@ -1,5 +1,9 @@
 .RightSiderBarCampaign{
     height: 87vh;
     flex: 0.2;
-    padding: 1rem;
+}
+
+.RightSiderBarCampaign img{
+    width: 150px;
+    object-fit: contain;
 }

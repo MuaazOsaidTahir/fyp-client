@@ -1,14 +1,11 @@
 import { Button } from '@mui/material'
 import React, { FC, useState } from 'react'
 import { Link } from 'react-router-dom'
-import AddPostModal from './AddPostModal';
 
 const DashboardSidebar: FC = () => {
-    const [addPostModal, setaddPostModal] = useState<boolean>(false);
 
     return (
         <>
-            {addPostModal && <AddPostModal setaddPostModal={setaddPostModal} />}
             <div className='dashboard__sidebar' >
                 <ul>
                     <li>

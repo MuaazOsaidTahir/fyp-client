@@ -1,7 +1,7 @@
 import { Button } from '@mui/material'
 import React, { FC, useEffect, useState } from 'react'
 import "./RightSiderBarCampaign.css"
-import "../AddPostModal.css"
+import Instagram from '../instagram/Instagram'
 
 interface Props {
     selectedNode: any,
@@ -52,10 +52,10 @@ const RightSiderBarCampaign: FC<Props> = ({ selectedNode, setPostAddedNode }) =>
     return (
         <div className='RightSiderBarCampaign' >
             {
-                selectedNode?.data.platformtype === 'platform' ? <h4>{selectedNode?.data.platformname}</h4> : selectedNode?.data.platformtype === 'input' ? <div>
+                selectedNode?.data.platformname === 'Instagram' ? <Instagram selectedNode={selectedNode} setPostAddedNode={setPostAddedNode} /> : selectedNode?.data.platformtype === 'input' ? <div>
                     {fileBase64 && <img src={fileBase64} alt="anything" />}
                     <div className='add_post_input' >
-                        <Button variant='contained' color='primary' > {fileName} </Button>
+                        <Button variant='contained' color='primary' > {fileName.length > 6 ? `${fileName.substr(0, 6)}...`: fileName } </Button>
                         <input type="file" name='file_selected' onChange={fileSelected} accept="image/png, image/gif, image/jpeg" />
                     </div>
                 </div> : <h3>Select Node to see the status</h3>

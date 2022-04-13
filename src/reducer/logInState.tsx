@@ -6,6 +6,7 @@ export enum userLoggedInStates {
 interface EmailType{
     email: string,
     subscription_status: string
+    id: string,
 }
 
 export interface ActionType {

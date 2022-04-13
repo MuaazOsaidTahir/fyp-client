@@ -7,6 +7,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { RootState } from '../reducer'
 import { useSelector } from 'react-redux'
 import LinkedIn from './linkedIn/LinkedIn'
+import Instagram from './facebook/Instagram'
 
 interface Props {
     toggle: boolean
@@ -18,11 +19,11 @@ const Dashboard: FC<Props> = ({ toggle }) => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if(!userState){
+        if (!userState) {
             navigate("/logIn")
         }
     }, []);
-    
+
     return (
         <>
             <Header />
@@ -31,7 +32,7 @@ const Dashboard: FC<Props> = ({ toggle }) => {
                 {
                     !toggle ?
                         <NoPlatform /> :
-                        platformName === "LinkedIn" ? <LinkedIn /> : <h3>{platformName}</h3>
+                        platformName === "LinkedIn" ? <LinkedIn /> : platformName === "Instagram" ? <Instagram /> : <h3>{platformName}</h3>
                 }
             </div>
         </>

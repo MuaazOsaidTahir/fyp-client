@@ -4,6 +4,9 @@ import "./MainCampaignComponent.css"
 import 'react-flow-renderer/dist/style.css';
 import localforage from 'localforage';
 import useCustomcomponent from './customcomponent/useCustomcomponent';
+import useCreateCampaign from './customcomponent/useCreateCampaign';
+import Button from '@mui/material/Button';
+import LoadingPage from '../LoadingPage';
 
 interface Props {
     platform: any,
@@ -21,6 +24,7 @@ const MainCampaignComponent: FC<Props> = ({ platform, ClickedComponent, Selected
     const [rfInstance, setRfInstance] = useState(null);
     const [reactFlowElements, SaveProgress] = useCustomcomponent()
     const [elements, setElements] = useState<any>(reactFlowElements);
+    const { getElements, loaderToggle } = useCreateCampaign()
 
     useEffect(() => {
         setElements(reactFlowElements);
@@ -64,7 +68,7 @@ const MainCampaignComponent: FC<Props> = ({ platform, ClickedComponent, Selected
     };
 
     const onElementClick = (event, element) => {
-        // console.log('click', element);
+        console.log('click', element);
         SelectedNode(element)
     }
 
@@ -73,17 +77,29 @@ const MainCampaignComponent: FC<Props> = ({ platform, ClickedComponent, Selected
         // SaveProgress(rfInstance)
     };
 
+    const resetElements = () => {
+        // console.log('Reseting')
+        setElements([
+            { id: '1', type: 'input', data: { label: 'Start Campaign' }, position: { x: 100, y: 100 } }
+        ])
+    }
+
     return (
-        <div className='MainCampaignComponent' >
-            <ReactFlow
-                elements={elements}
-                onElementsRemove={onElementsRemove}
-                onConnect={onConnect}
-                onElementClick={onElementClick}
-                onNodeDragStop={onNodeDragStop}
-                onLoad={setRfInstance}
-            />
-        </div>
+        <>
+            {loaderToggle && <LoadingPage />}
+            <div className='MainCampaignComponent' >
+                <ReactFlow
+                    elements={elements}
+                    onElementsRemove={onElementsRemove}
+                    onConnect={onConnect}
+                    onElementClick={onElementClick}
+                    onNodeDragStop={onNodeDragStop}
+                    onLoad={setRfInstance}
+                />
+                <Button variant='contained' color='warning' onClick={resetElements} className='reset_button' >Reset</Button>
+                <Button variant='contained' color='primary' onClick={() => getElements(elements)} className='confirm_button' >Confirm</Button>
+            </div>
+        </>
     )
 }
 

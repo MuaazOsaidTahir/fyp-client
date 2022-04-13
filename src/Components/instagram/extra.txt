@@ -1,0 +1,52 @@
+// const getUserPosts = async () => {
+    //     const res = await fetch(`https://graph.facebook.com/v12.0/${userProfile.userID}/photos/uploaded?access_token=${userProfile.accessToken}`);
+    //     const data = await res.json();
+
+    //     // console.log(data);
+    //     setuserPosts(data.data);
+    //     setnextPaging(data.paging.next)
+    // }
+
+    // const getPosts = async () => {
+    //     const data = await Promise.all(userPosts.map(async (eachPost: any) => {
+    //         const res = await fetch(`https://graph.facebook.com/v12.0/${eachPost.id}?fields=picture,name,name_tags,comments,likes,created_time,alt_text&access_token=${userProfile.accessToken}`);
+
+    //         const responsedata: EachPostField = await res.json();
+
+    //         // console.log(responsedata);
+
+    //         return {
+    //             picture: responsedata.picture, name: responsedata?.name, name_tags: responsedata?.name_tags || [],
+    //             comments: responsedata?.comments?.data || [],
+    //             likes: responsedata?.likes?.data || [],
+    //             id: responsedata.id, created_time: responsedata.created_time,
+    //             alt_text: responsedata.alt_text
+    //         }
+    //     }))
+    //     console.log(userPostsUrl);
+    //     setuserPostsUrl((val: any) => {
+    //         return [...val, ...data];
+    //     });
+    // }
+
+    // const loadMorePosts = async (url: any) => {
+    //     setloaderState(true);
+    //     const res = await fetch(url);
+    //     const data = await res.json();
+    //     setuserPosts(data.data);
+    //     setloaderState(false)
+    //     setnextPaging(data.paging.next || null)
+    // }
+
+    // useEffect(() => {
+    //     if (userProfile) {
+    //         getUserPosts()
+    //         // dispatch({ type: userFacebookStates.user, payload: userProfile })
+    //     }
+    // }, [userProfile]);
+
+    // useEffect(() => {
+    //     if (userPosts.length) {
+    //         getPosts();
+    //     }
+    // }, [userPosts]);

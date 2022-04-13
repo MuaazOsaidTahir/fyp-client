@@ -21,7 +21,7 @@ let platforms = [
 
 let inputs = [
     {
-        name: 'Input File',
+        name: 'Picture Selector',
         img: 'https://res.cloudinary.com/muaaz/image/upload/v1646013261/download_ecqagq.jpg',
         type: "input"
     }
@@ -34,37 +34,41 @@ interface Props {
 const LeftSiderBarCampaign: FC<Props> = ({ ClickedComponent }) => {
     return (
         <div className='LeftSiderBarCampaign' >
-            <h3>Platforms</h3>
-            {
-                platforms.map((platform, i) => {
-                    return <IconButton key={i} onClick={() => ClickedComponent(platform)} >
-                        <Card variant="outlined" >
-                            <CardHeader
-                                avatar={
-                                    <Avatar src={platform.img} />
-                                }
-                                title={platform.name}
-                            />
-                        </Card>
-                    </IconButton>
-                })
-            }
+            <div className='containers' >
+                <h2>Platforms</h2>
+                {
+                    platforms.map((platform, i) => {
+                        return <IconButton key={i} onClick={() => ClickedComponent(platform)} >
+                            <Card variant="outlined" >
+                                <CardHeader
+                                    avatar={
+                                        <Avatar src={platform.img} />
+                                    }
+                                    title={platform.name}
+                                />
+                            </Card>
+                        </IconButton>
+                    })
+                }
+            </div>
 
-            <h3>Select File</h3>
-            {
-                inputs.map((input, i) => {
-                    return <IconButton key={i} onClick={() => ClickedComponent(input)} >
-                        <Card variant="outlined" style={{display: "flex", alignItems: "center"}} >
-                            <CardHeader
-                                avatar={
-                                    <Avatar src={input.img} />
-                                }
-                            title={input.name}
-                            />
-                        </Card>
-                    </IconButton>
-                })
-            }
+            <div className='containers' >
+                <h2>Select File</h2>
+                {
+                    inputs.map((input, i) => {
+                        return <IconButton key={i} onClick={() => ClickedComponent(input)} >
+                            <Card variant="outlined" style={{ display: "flex", alignItems: "center" }} >
+                                <CardHeader
+                                    avatar={
+                                        <Avatar src={input.img} />
+                                    }
+                                    title={input.name}
+                                />
+                            </Card>
+                        </IconButton>
+                    })
+                }
+            </div>
         </div>
     )
 }

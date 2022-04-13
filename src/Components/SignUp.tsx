@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 import { signupUser } from '../apis/api';
 import Loader from 'react-loader-spinner';
 import { useNavigate } from 'react-router-dom';
+import { notificationToastify } from "../tostify/toastify"
 
 interface signupForm {
     email: string,
@@ -29,9 +30,10 @@ const SignUp: FC = () => {
             if (data.signupUser) {
                 dispatch({ type: userLoggedInStates.user, payload: data.signupUser })
                 navigate("/")
+                notificationToastify(`Signed In as: ${data.signupUser.email}`, 'success')
             }
             else if (data.signupUser === null) {
-                alert("User not Registered!")
+                notificationToastify(`User already Registered`, 'error')
             }
         }
     }, [data])
@@ -60,7 +62,7 @@ const SignUp: FC = () => {
         <>
             <Header signup={false} login={true} />
             <div className='SignUp' >
-                <div className='signup_form' >
+                <div className='signup_form card_style' >
                     <div className='signup_form_left' >
                         <div>
                             <h1>Join Now to manage all your accounts at one place.</h1>

@@ -49,7 +49,7 @@ const MemberShipPage: FC = () => {
                         <h1>Plans & Pricing</h1>
                         <p>Whether your time-saving automation needs are large or small, we’re here to help you scale.</p>
                     </div>
-                    <div className='membership__card' >
+                    <div className='membership__card card_style' >
                         <Card variant="outlined" style={{ width: "30rem", textAlign: "center" }} >
                             <CardContent>
                                 <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
