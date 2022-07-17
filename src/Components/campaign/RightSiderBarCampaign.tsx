@@ -2,6 +2,8 @@ import { Button } from '@mui/material'
 import React, { FC, useEffect, useState } from 'react'
 import "./RightSiderBarCampaign.css"
 import Instagram from '../instagram/Instagram'
+import Facebook from '../instagram/Facebook'
+import Timer from '../Timer'
 
 interface Props {
     selectedNode: any,
@@ -48,17 +50,16 @@ const RightSiderBarCampaign: FC<Props> = ({ selectedNode, setPostAddedNode }) =>
         }
     }, [fileBase64, toggle])
 
-
     return (
         <div className='RightSiderBarCampaign' >
             {
-                selectedNode?.data.platformname === 'Instagram' ? <Instagram selectedNode={selectedNode} setPostAddedNode={setPostAddedNode} /> : selectedNode?.data.platformtype === 'input' ? <div>
+                selectedNode?.data.platformname === 'Instagram' ? <Instagram selectedNode={selectedNode} setPostAddedNode={setPostAddedNode} /> : selectedNode?.data.platformname === 'Facebook' ? <Facebook selectedNode={selectedNode} setPostAddedNode={setPostAddedNode} /> : selectedNode?.data.platformtype === 'input' ? <div>
                     {fileBase64 && <img src={fileBase64} alt="anything" />}
                     <div className='add_post_input' >
-                        <Button variant='contained' color='primary' > {fileName.length > 6 ? `${fileName.substr(0, 6)}...`: fileName } </Button>
-                        <input type="file" name='file_selected' onChange={fileSelected} accept="image/png, image/gif, image/jpeg" />
+                        <Button variant='contained' color='primary' > {fileName?.length > 6 ? `${fileName.substr(0, 6)}...` : fileName} </Button>
+                        <input title='Select a file' type="file" name='file_selected' onChange={fileSelected} accept="image/png, image/gif, image/jpeg" />
                     </div>
-                </div> : <h3>Select Node to see the status</h3>
+                </div> : selectedNode?.data.platformtype === "timer" ? <Timer selectedNode={selectedNode} /> : <h3>Select Node to see the status</h3>
             }
         </div>
     )

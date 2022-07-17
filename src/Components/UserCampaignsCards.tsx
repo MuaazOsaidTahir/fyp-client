@@ -9,34 +9,44 @@ import { Avatar, IconButton } from '@mui/material';
 import CardContent from '@mui/material/CardContent';
 import { Doughnut } from "react-chartjs-2";
 import Loader from 'react-loader-spinner';
-import { notificationToastify } from '../tostify/toastify';
+import { notificationToastify, Options } from '../tostify/toastify';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import moment from "moment"
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 interface Props {
     instagramId: any,
-    linkedInId: any,
+    facebookId: any,
     twitterId: any,
     type: any,
+    campaignName: any,
+    created: any,
 }
 
-const UserCampaignsCards: FC<Props> = ({ type, instagramId, linkedInId, twitterId }) => {
+const UserCampaignsCards: FC<Props> = ({ created, campaignName, type, instagramId, facebookId, twitterId }) => {
     const InstagramProfile = useSelector((store: RootState) => store.instagramUser);
     const [postData, setpostData] = useState(null);
+    const [toggler, settoggler] = useState(false)
 
     useEffect(() => {
         if (instagramId && InstagramProfile) {
             getInstagramInsights()
+            // settoggler(false);
+        }
+        else if(!InstagramProfile){
+            // settoggler(false);
+            notificationToastify("LogIn with Instagam First", Options.ERROR)
         }
     }, [instagramId, type])
 
     const getInstagramInsights = async () => {
         try {
             const response = await axios(`https://graph.facebook.com/v13.0/${instagramId}/insights?metric=${type}&access_token=${InstagramProfile.accessToken}`)
+            // console.log(response)
             setpostData(() => {
                 return {
-                    labels: ['Instagram', 'LinkedIn', 'Twitter'],
+                    labels: ['Instagram', 'Facebook', 'Twitter'],
                     datasets: [
                         {
                             label: type,
@@ -50,21 +60,20 @@ const UserCampaignsCards: FC<Props> = ({ type, instagramId, linkedInId, twitterI
                         },
                     ],
                 }
-            }
-            )
+            })
+            settoggler(true);
         } catch (error) {
-            notificationToastify('An Error Occured', 'error')
+            notificationToastify('An Error Occured', Options.ERROR )
         }
     }
 
-
     return (
         <>
-            {postData ? <Card className='usercapmaigns__cards' sx={{ maxWidth: 345 }}>
+            {toggler ? <Card className='usercapmaigns__cards' sx={{ maxWidth: 345 }}>
                 <CardHeader
                     avatar={
                         <Avatar>
-                            R
+                            {campaignName.split("")[0]}
                         </Avatar>
                     }
                     action={
@@ -72,8 +81,8 @@ const UserCampaignsCards: FC<Props> = ({ type, instagramId, linkedInId, twitterI
                             +
                         </IconButton>
                     }
-                    title="Name"
-                    subheader="September 14, 2016"
+                    title={campaignName}
+                    subheader={moment(created).fromNow()}
                 />
                 <CardContent>
                     <Doughnut data={postData} />

@@ -21,3 +21,14 @@
     margin: 10px !important;
     height: fit-content !important;
 }
+
+.loader_error_page{
+    height: 87.5vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loader_error_page img{
+    width: 38rem;
+}

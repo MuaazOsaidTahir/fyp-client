@@ -1,11 +1,13 @@
 import { Button } from '@mui/material'
 import React, { FC, useState } from 'react'
 import { Link } from 'react-router-dom'
+import CampaignNameModel from './CampaignNameModel'
 
 const DashboardSidebar: FC = () => {
 
     return (
         <>
+            {/* <CampaignNameModel /> */}
             <div className='dashboard__sidebar' >
                 <ul>
                     <li>

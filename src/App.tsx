@@ -16,6 +16,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import UserCampaigns from './Components/UserCampaigns';
 import { RootState } from './reducer';
+import NoPage from './Components/NoPage';
 
 function App() {
   const { data, error } = useQuery(signedUpUser)
@@ -27,11 +28,8 @@ function App() {
     if (data) {
       if (data.getsignedInUser) {
         dispatch({ type: userLoggedInStates.user, payload: data.getsignedInUser })
-        setloading(false)
       }
-      else {
-        setloading(false)
-      }
+      setloading(false)
     }
   }, [data]);
 
@@ -73,16 +71,13 @@ function App() {
                 <Route path="/membership" element={<><Notify /><MemberShipPage /></>} />
                 <Route path="/createcampaign" element={<><Notify /><CampaignPage /></>} />
                 <Route path="/usercampaigns" element={<><Notify /><UserCampaigns /></>} />
+                <Route path='*' element={<NoPage />} />
               </Routes> :
               <Routes>
                 <Route path="/" element={<><Notify /><HomePage /></>} />
                 <Route path="/logIn" element={<><Notify /><LogIn /></>} />
                 <Route path="/signUp" element={<><Notify /><SignUp /></>} />
-                {/* <Route path="/dashboard" element={<><Notify /><Dashboard toggle={false} /></>} /> */}
-                {/* <Route path="/dashboard/:platformName" element={<><Notify /><Dashboard toggle={true} /></>} /> */}
-                {/* <Route path="/membership" element={<><Notify /><MemberShipPage /></>} /> */}
-                {/* <Route path="/createcampaign" element={<><Notify /><CampaignPage /></>} />
-                <Route path="/usercampaigns" element={<><Notify /><UserCampaigns /></>} /> */}
+                <Route path='*' element={<NoPage />} />
               </Routes>
         }
       </BrowserRouter>

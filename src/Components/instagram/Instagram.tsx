@@ -2,59 +2,28 @@ import React, { Dispatch, FC, useEffect, useState } from 'react';
 import FacebookLogin from 'react-facebook-login';
 import "./Instagram.css"
 import { useDispatch, useSelector } from 'react-redux';
-// import { ActionType, userFacebookStates } from '../../reducer/facebookreducer';
 import { FacebookActionType } from '../../reducer/facebookReducer';
 import { RootState } from '../../reducer';
-import FacebookText from './FacebookText';
-// import { EachPostField } from '../../interfaces/facebookInterfaces';
+import useAccessToken from './customComponent/useAccessToken';
+import InstagramText from './InstagramText';
 
 interface Props {
     selectedNode?: any,
     setPostAddedNode?: React.Dispatch<any>
 }
 
-const Facebook: FC<Props> = ({ selectedNode, setPostAddedNode }) => {
-    const InstagramProfile = useSelector((store: RootState) => store.instagramUser);
-    const [userProfile, setuserProfile] = useState<any>(InstagramProfile || null);
-    const [usersPages, setusersPages] = useState([])
+const Instagram: FC<Props> = ({ selectedNode, setPostAddedNode }) => {
+    const FacebookToken = useSelector((store: RootState) => store.facebookUser);
     const [instagram, setinstagram] = useState<any>()
     const [instagramProfile, setinstagramProfile] = useState<any>()
     const dispatch: Dispatch<FacebookActionType> = useDispatch();
-
-    console.log(InstagramProfile)
-
-    const responseFacebook = (response: any) => {
-        try {
-            setuserProfile(response);
-            // longLivedToken(response.accessToken)
-            console.log(response);
-            dispatch({ type: 'Facebook_AccessToken', payload: { accessToken: response.accessToken, userId: response.id } })
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
-    const componentClicked = () => {
-        console.log("Clicked");
-    }
-
-    const getUserPage = async () => {
-        const pages = await fetch(`https://graph.facebook.com/v13.0/me/accounts?access_token=${userProfile.accessToken}`)
-        const userPage = await pages.json();
-        setusersPages(userPage.data);
-    }
-
-    useEffect(() => {
-        if (userProfile) {
-            getUserPage()
-        }
-    }, [userProfile])
-
+    const { responseFacebook, usersPages } = useAccessToken()
+    
     const getInstagramPage = async () => {
-        const insta = await fetch(`https://graph.facebook.com/v13.0/${usersPages[0].id}?fields=instagram_business_account&access_token=${userProfile.accessToken}`);
+        const insta = await fetch(`https://graph.facebook.com/v13.0/${usersPages[0].id}?fields=instagram_business_account&access_token=${FacebookToken.accessToken}`);
         const instaPro = await insta.json();
         setinstagram(instaPro);
-        dispatch({ type: 'Instagram_AccessToken', payload: { accessToken: userProfile.accessToken, userId: instaPro.instagram_business_account.id } })
+        dispatch({ type: 'Instagram_AccessToken', payload: { accessToken: FacebookToken.accessToken, userId: instaPro.instagram_business_account.id } })
     }
 
     useEffect(() => {
@@ -66,9 +35,8 @@ const Facebook: FC<Props> = ({ selectedNode, setPostAddedNode }) => {
     }, [usersPages])
 
     const getInstagramProfile = async () => {
-        const res = await fetch(`https://graph.facebook.com/v13.0/${instagram.instagram_business_account.id}?fields=biography%2Cmedia_count%2Cprofile_picture_url%2Cmedia%2Cwebsite%2Cname&access_token=${userProfile.accessToken}`)
+        const res = await fetch(`https://graph.facebook.com/v13.0/${instagram.instagram_business_account.id}?fields=biography%2Cmedia_count%2Cprofile_picture_url%2Cmedia%2Cwebsite%2Cname&access_token=${FacebookToken.accessToken}`)
         const response = await res.json();
-        console.log(response)
         setinstagramProfile(response);
     }
 
@@ -80,7 +48,6 @@ const Facebook: FC<Props> = ({ selectedNode, setPostAddedNode }) => {
 
 
     // selectedNode logics
-
     const saveCaption = (nodeCaption: string) => {
         selectedNode.data.caption = nodeCaption
         setPostAddedNode(selectedNode)
@@ -89,14 +56,14 @@ const Facebook: FC<Props> = ({ selectedNode, setPostAddedNode }) => {
     return (
         <>
             {
-                !userProfile ?
+                !FacebookToken ?
                     <div className='facebook_login_btn' >
                         <FacebookLogin
                             // appId="214533880773194"
                             appId='944116122969052'
                             autoLoad={true}
                             fields="name,email,picture"
-                            onClick={componentClicked}
+                            // onClick={componentClicked}
                             callback={responseFacebook} />
                     </div> :
                     <div className='facebook_profiles_page' >
@@ -107,23 +74,11 @@ const Facebook: FC<Props> = ({ selectedNode, setPostAddedNode }) => {
                             </div>
                             <p className='bio_text' >{instagramProfile.biography}</p>
                         </div> : <h3>Loading...</h3>}
-                        <FacebookText selectedNode={selectedNode} saveCaption={saveCaption} />
-                        {/* {
-                            usersPages.length > 0 && <div>
-                                {
-                                    usersPages?.map(page => {
-                                        console.log(page.id);
-                                        return <Suspense key={page.id} fallback={<h4>Loading...</h4>} >
-                                            <FacebookPages id={page.id} name={page.name} category={page.category} />
-                                        </Suspense>
-                                    })
-                                }
-                            </div>
-                        } */}
+                        <InstagramText selectedNode={selectedNode} saveCaption={saveCaption} />
                     </div>
             }
         </>
     );
 }
 
-export default Facebook;
+export default Instagram;

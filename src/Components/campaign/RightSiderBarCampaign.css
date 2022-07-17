@@ -1,9 +1,27 @@
 .RightSiderBarCampaign{
-    height: 87vh;
+    height: 87.6vh;
     flex: 0.2;
+    text-align: center;
 }
 
 .RightSiderBarCampaign img{
     width: 150px;
     object-fit: contain;
+}
+
+.RightSiderBarCampaign h3{
+    color: white;
+}
+
+.RightSiderBarCampaign .add_post_input{
+    position: relative;
+}
+
+.RightSiderBarCampaign .add_post_input input{
+    opacity: 0;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
 }

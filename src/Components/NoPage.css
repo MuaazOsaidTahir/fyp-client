@@ -1,0 +1,15 @@
+.No_Page_Container{
+    height: 87.5vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.No_Page_Container img{
+    width: 30rem;
+}
+
+.No_Page_Container a{
+    text-decoration: none;
+}

@@ -7,7 +7,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { RootState } from '../reducer'
 import { useSelector } from 'react-redux'
 import LinkedIn from './linkedIn/LinkedIn'
-import Instagram from './facebook/Instagram'
+import Instagram from './instagram/Instagram'
 
 interface Props {
     toggle: boolean

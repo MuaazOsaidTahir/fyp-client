@@ -1,8 +1,12 @@
 .LeftSiderBarCampaign{
     height: 87vh;
     flex: 0.2;
-    /* overflow-y: scroll; */
+    overflow-y: scroll;
     padding: 1rem;
+}
+
+.LeftSiderBarCampaign::-webkit-scrollbar{
+    display: none;
 }
 
 .LeftSiderBarCampaign h2{
@@ -18,4 +22,8 @@
     padding-bottom: 1rem;
     border-bottom: 1px solid lightgray;
     margin-bottom: 10px;
+}
+
+.LeftSiderBarCampaign .css-10botns-MuiInputBase-input-MuiFilledInput-input{
+    color: white;
 }

@@ -1,0 +1,22 @@
+.CampaignNameModel{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.CampaignModelName{
+    width: 30rem;
+    height: 20rem;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 2px 2px 17px -2px rgba(0,0,0,0.79);
+    -webkit-box-shadow: 2px 2px 17px -2px rgba(0,0,0,0.79);
+    -moz-box-shadow: 2px 2px 17px -2px rgba(0,0,0,0.79);
+}

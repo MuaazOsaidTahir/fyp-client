@@ -28,7 +28,7 @@ const Header: FC<Props> = ({ signup, login }): JSX.Element => {
                 <Link to="/" >
                     <img className={scrolledvalue ? "header_scrolled_img" : 'header_img'} src="https://res.cloudinary.com/djdcv17qb/image/upload/v1640114184/smm_wptpwe.png" alt="SMM" />
                 </Link>
-                {(userState?.subscription_status === 'canceled' || !userState) && <Link to='/membership' >
+                {(userState && userState?.subscription_status === 'canceled') && <Link to='/membership' >
                     Get Membership
                 </Link>}
             </div>

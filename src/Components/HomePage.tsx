@@ -4,7 +4,7 @@ import "./HomePage.css"
 import { Waypoint } from 'react-waypoint';
 import Loader from "react-loader-spinner";
 import { useSearchParams } from 'react-router-dom';
-import { notificationToastify } from '../tostify/toastify';
+import { notificationToastify, Options } from '../tostify/toastify';
 
 const HomePage: FC = (): JSX.Element => {
     const [animate, setanimate] = useState<boolean>(false)
@@ -12,7 +12,7 @@ const HomePage: FC = (): JSX.Element => {
 
     useEffect(() => {
         if(searchParams.get('session_id')){
-            notificationToastify(`Membership Successfully Purchased`, 'success')
+            notificationToastify(`Membership Successfully Purchased`, Options.SUCCESS )
         }
     }, [searchParams])
 

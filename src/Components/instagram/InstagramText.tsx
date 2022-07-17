@@ -6,7 +6,7 @@ interface Props{
     saveCaption:  (caption: string) => void
 }
 
-const FacebookText: FC<Props> = ({ selectedNode, saveCaption }) => {
+const InstagramText: FC<Props> = ({ selectedNode, saveCaption }) => {
     const [nodeCaption, setnodeCaption] = useState("")
 
     useEffect(() => {
@@ -22,10 +22,10 @@ const FacebookText: FC<Props> = ({ selectedNode, saveCaption }) => {
 
     return (
         <div className='teaxtarea_container' >
-            <textarea placeholder='Post Caption For Instagram' value={nodeCaption} onChange={(e) => setnodeCaption(e.target.value)} />
+            <textarea placeholder='Post Caption' value={nodeCaption} onChange={(e) => setnodeCaption(e.target.value)} />
             <Button variant='contained' onClick={saveTheCaption} color='info' > Save </Button>
         </div>
     )
 }
 
-export default FacebookText
+export default InstagramText
